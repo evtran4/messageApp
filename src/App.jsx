@@ -33,7 +33,7 @@ function App() {
     let response = await fetch("http://127.0.0.1:8000/getMsgs")
     let messages =  await response.json()
     console.log(messages)
-    if(messages.length != list.length){
+    if(messages.length != list.length || list[0] == "Loading..."){
       setList(messages)
     }
   }
