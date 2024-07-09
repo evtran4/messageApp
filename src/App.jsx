@@ -25,9 +25,7 @@ async function addMsg(text){
 
 function App() {
 
-  useEffect(()=> {
-    fetchMessages();
-  })
+  setInterval(() => {fetchMessages()}, 2000)
 
   const [list, setList] = useState(["Loading..."])
 
