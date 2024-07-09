@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-let messages = [];
+let oldMessages = [];
 
 async function addMsg(text){
   const myHeaders = new Headers();
@@ -24,16 +24,18 @@ async function addMsg(text){
 
 
 function App() {
-
-  setInterval(() => {fetchMessages()}, 2000)
-
   const [list, setList] = useState(["Loading..."])
+  setInterval(() => {fetchMessages()}, 5000)
 
   async function fetchMessages(){
     let response = await fetch("http://127.0.0.1:8000/getMsgs")
     let messages =  await response.json()
-    console.log(messages)
-    if(messages.length != list.length || list[0] == "Loading..."){
+    console.log("fetching")
+    console.log(oldMessages.length)
+    if(true){
+      console.log(messages.length)
+      oldMessages = messages; 
+      console.log(messages)
       setList(messages)
     }
   }
